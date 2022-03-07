@@ -1,0 +1,8 @@
+section {
+  margin: 4rem 0;
+}
+
+.flexDescendant {
+  flex-basis: 100%;
+  --flow-space: 4rem;
+}

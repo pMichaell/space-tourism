@@ -11,6 +11,8 @@
 # production
 /build
 
+/src/preview
+
 # misc
 .DS_Store
 .env.local

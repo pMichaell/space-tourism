@@ -1,0 +1,5 @@
+.header {
+  color: hsl(var(--clr-light));
+  justify-content: space-between;
+  align-items: center;
+}
