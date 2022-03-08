@@ -35,11 +35,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div className={classes.layout}>
-      <div className={clsx(classes.header, "flex")}>
-        <div className={classes.logo}>
+      <div className={clsx("flex", classes.header)}>
+        <div>
           <img src={logo} alt="company logo" />
         </div>
-        <div className={classes.line} />
         <ul
           className={clsx(
             "flex",

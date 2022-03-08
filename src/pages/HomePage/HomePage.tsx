@@ -1,4 +1,5 @@
 import "../../index.scss";
+import classes from "./HomePage.module.css";
 import clsx from "clsx";
 
 const HomePage = () => {
@@ -6,18 +7,21 @@ const HomePage = () => {
 
   return (
     <div className={clsx("gridContainer")}>
-      <div>
+      <div className={clsx(classes.gridDiv)}>
         <h1
           className={clsx(
             "ffSansCond",
             "textAccent",
             "uppercase",
             "fs500",
-            "letterSpacing1"
+            "letterSpacing1",
+            classes.header
           )}
         >
           So, you want to travel to
-          <span className={clsx("fs900", "textWhite", "ffSerif")}>Space</span>
+          <span className={clsx("fs900", "textWhite", "ffSerif", "dBlock")}>
+            Space
+          </span>
         </h1>
         <p>
           Let’s face it; if you want to go to space, you might as well genuinely
@@ -26,7 +30,7 @@ const HomePage = () => {
           experience!
         </p>
       </div>
-      <div>
+      <div className={classes.gridDiv}>
         <button
           onClick={exploreButtonHandler}
           className={clsx(
