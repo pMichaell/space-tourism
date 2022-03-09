@@ -1,16 +1,16 @@
 .sideMenu {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     width: 70vw;
     height: 100vh;
-    background-color: hsl(var(--clr-white) / 0.5);
+    background-color: hsl(var(--clr-white) / 0.15);
     transform-origin: right;
-    transition: transfrom 500ms ease-out;
-    transform: translateX(-100%);
+    transition: transform 300ms ease-out;
+    transform: translateY(-100%);
 }
 
-.sideMenu.open {
-    transform: translateX(0);
+.open {
+    transform: translateY(0);
 }
 
