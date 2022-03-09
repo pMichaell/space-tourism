@@ -130,7 +130,7 @@ code {
 }
 
 .grid {
-  display: flex;
+  display: grid;
   gap: var(--gap, 0);
 }
 
@@ -152,20 +152,10 @@ code {
 }
 
 .gridContainer {
-  max-width: 100%;
   display: grid;
   text-align: center;
-  border: 5px solid limegreen;
   place-items: center;
   padding-inline: 1rem;
-}
-
-.gridContainer > *:first-child {
-  outline: 1px solid red;
-}
-
-.gridContainer > *:last-child {
-  outline: 1px solid yellow;
 }
 
 .gridContainer * {
@@ -180,12 +170,15 @@ code {
 
   .gridContainer > *:first-child {
     grid-column: 2;
-    outline: 1px solid red;
   }
 
   .gridContainer > *:last-child {
     grid-column: 3;
-    outline: 1px solid yellow;
+  }
+
+  .gridContainerHome {
+    padding-bottom: max(20vh, 6rem);
+    align-items: end;
   }
 }
 .fulfillParent {

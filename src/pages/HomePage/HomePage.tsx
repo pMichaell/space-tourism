@@ -6,7 +6,7 @@ const HomePage = () => {
   const exploreButtonHandler = () => {};
 
   return (
-    <div className={clsx("gridContainer")}>
+    <div className={clsx("gridContainer", "gridContainerHome")}>
       <div className={clsx(classes.gridDiv)}>
         <h1
           className={clsx(
