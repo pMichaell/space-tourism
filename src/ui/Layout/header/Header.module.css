@@ -9,6 +9,8 @@
 }
 
 .logo {
+    display: grid;
+    place-items: center;
 }
 
 .line {

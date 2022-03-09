@@ -63,7 +63,7 @@ const Header = () => {
 
   return (
     <div className={clsx("flex", classes.header)}>
-      <div>
+      <div className={classes.logo}>
         <img src={logo} alt="company logo" />
       </div>
       {navigation}

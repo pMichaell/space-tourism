@@ -1,36 +1,28 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import MenuContext from "../../../../context/menuContext/MenuContext";
 import { NavigationProps } from "../Header";
 import hamburgerIcon from "../../../../assets/shared/icon-hamburger.svg";
 import SideMenu from "./SideMenu";
 
-const Responsive = ({
-  homeClickHandler,
-  destinationClickHandler,
-  crewClickHandler,
-  technologyClickHandler,
-}: NavigationProps) => {
+const Responsive = (props: NavigationProps) => {
   const menuContext = useContext(MenuContext);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const overlaysDiv = document.getElementById("overlays");
+  const { open, changeSideMenuState } = menuContext;
 
   const hamburgerClickHandler = () => {
-    setMenuOpen((prevState) => !prevState);
+    changeSideMenuState?.();
   };
-
-  useEffect(() => {
-    console.log(menuOpen);
-  }, [menuOpen]);
 
   return (
     <div>
-      <button onClick={hamburgerClickHandler}>
-        <span className="srOnly">Menu</span>
-        <div>
-          <img src={hamburgerIcon} alt="menu icon" />
-        </div>
-      </button>
-      <SideMenu menuOpen={menuOpen} />
+      {!open && (
+        <button onClick={hamburgerClickHandler}>
+          <span className="srOnly">Menu</span>
+          <div>
+            <img src={hamburgerIcon} alt="menu icon" />
+          </div>
+        </button>
+      )}
+      <SideMenu {...props} />
     </div>
   );
 };

@@ -1,13 +1,48 @@
 .sideMenu {
+    z-index: 100;
     position: fixed;
     top: 0;
     right: 0;
     width: 70vw;
     height: 100vh;
-    background-color: hsl(var(--clr-white) / 0.15);
-    transform-origin: right;
     transition: transform 300ms ease-out;
     transform: translateY(-100%);
+    list-style: none;
+    flex-direction: column;
+    padding-inline: 1.5rem;
+    background: hsl( var(--clr-dark) / 0.95);
+}
+
+@supports (backdrop-filter: blur(1.5rem)) {
+    .sideMenu {
+        background-color: hsl(var(--clr-white) / 0.05);
+        backdrop-filter: blur(1.5rem);
+    }
+}
+
+.sideMenuHeader {
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-basis: 6rem;
+}
+
+.list {
+    flex-basis: 50%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding-left: 0.5rem;
+}
+
+.list span {
+    margin-right: 0.3em;
+    font-weight: 700;
+}
+
+.div {
+    flex-basis: 50%;
 }
 
 .open {
