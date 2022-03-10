@@ -3,9 +3,9 @@ import logo from "../../../assets/shared/logo.svg";
 import classes from "./Header.module.css";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Nav from "./Nav";
-import Responsive from "./responsive/Responsive";
+import Responsive from "./navigation/responsive/Responsive";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
+import NavList from "./navigation/NavList";
 
 export type NavigationProps = {
   homeClickHandler: () => void;
@@ -13,6 +13,7 @@ export type NavigationProps = {
   crewClickHandler: () => void;
   technologyClickHandler: () => void;
   defineClassName?: (locName: string) => string;
+  className?: string;
 };
 
 const Header = () => {
@@ -56,7 +57,19 @@ const Header = () => {
 
   const navigation =
     windowDimensions.width > 560 ? (
-      <Nav {...props} />
+      <NavList
+        {...props}
+        className={clsx(
+          "flex",
+          "ffSansCond",
+          "textWhite",
+          "fs400",
+          "letterSpacing3",
+          "uppercase",
+          classes.underlineIndicators,
+          classes.navigation
+        )}
+      />
     ) : (
       <Responsive {...props} />
     );

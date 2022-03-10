@@ -1,31 +1,19 @@
-import clsx from "clsx";
-import classes from "./Header.module.css";
-import { NavigationProps } from "./Header";
 import React from "react";
+import { NavigationProps } from "../Header";
 
-const Nav = ({
+const NavList = ({
   homeClickHandler,
   destinationClickHandler,
   technologyClickHandler,
   crewClickHandler,
   defineClassName,
+  className,
 }: NavigationProps) => {
   return (
-    <ul
-      className={clsx(
-        "flex",
-        "ffSansCond",
-        "textWhite",
-        "fs400",
-        "letterSpacing3",
-        "uppercase",
-        classes.underlineIndicators,
-        classes.navigation
-      )}
-    >
+    <ul className={className}>
       <li onClick={homeClickHandler} className={defineClassName?.("/")}>
         <div>
-          <span>00</span>
+          <span aria-hidden="true">00</span>
           Home
         </div>
       </li>
@@ -34,13 +22,13 @@ const Nav = ({
         className={defineClassName?.("destination")}
       >
         <div>
-          <span>01</span>
+          <span aria-hidden="true">01</span>
           Destinations
         </div>
       </li>
       <li onClick={crewClickHandler} className={defineClassName?.("crew")}>
         <div>
-          <span>02</span>
+          <span aria-hidden="true">02</span>
           Crew
         </div>
       </li>
@@ -49,7 +37,7 @@ const Nav = ({
         className={defineClassName?.("technology")}
       >
         <div>
-          <span>03</span>
+          <span aria-hidden="true">03</span>
           Technology
         </div>
       </li>
@@ -57,4 +45,4 @@ const Nav = ({
   );
 };
 
-export default Nav;
+export default NavList;

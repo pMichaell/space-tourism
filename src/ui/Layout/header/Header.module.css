@@ -3,15 +3,17 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    min-width: 0;
-    padding-inline: 1.5rem
-;
+    overflow: hidden;
 }
 
 .logo {
     display: grid;
     place-items: center;
+    margin: 2rem clamp(1.5rem, 5vw, 3.5rem);
+    flex-shrink: 0;
 }
+
+
 
 .line {
     position: absolute;
@@ -23,11 +25,19 @@
 }
 
 .navigation {
-    background-color: hsl(var(--clr-white) / .04);
     justify-content: center;
     align-items: center;
     list-style: none;
-    --gap: 3rem;
+    --gap: clamp(1.5rem, 6vw, 3rem);
+    background: hsl( var(--clr-dark) / 0.95);
+    overflow-x: hidden;
+}
+
+@supports (backdrop-filter: blur(1.5rem)) {
+    .navigation {
+        background-color: hsl(var(--clr-white) / 0.05);
+        backdrop-filter: blur(1.5rem);
+    }
 }
 
 .navigation > li {
@@ -41,19 +51,72 @@
     justify-content: center;
 }
 
-.underlineIndicators > * {
-    cursor: pointer;
-    padding: 2rem 0;
-    border-bottom: .2rem solid hsl(var(--clr-white) / 0);
+@media (max-width: 35em){
+    .underlineIndicators > * > * {
+        cursor: pointer;
+        border-bottom: .2rem solid hsl(var(--clr-white) / 0);
+    }
+
+    .underlineIndicators > *:hover > *,
+    .underlineIndicators > *:focus > *{
+        border-color: hsl(var(--clr-white) / .5);
+    }
+
+    .underlineIndicators > .active > * {
+        border-color: hsl(var(--clr-white) / 1);
+    }
 }
 
-.underlineIndicators > *:hover,
-.underlineIndicators > *:focus {
-    border-color: hsl(var(--clr-white) / .5);
+@media (min-width: 35em) {
+    .underlineIndicators > * {
+        cursor: pointer;
+        padding: 2rem 0;
+        border-bottom: .2rem solid hsl(var(--clr-white) / 0);
+    }
+
+    .underlineIndicators > *:hover,
+    .underlineIndicators > *:focus {
+        border-color: hsl(var(--clr-white) / .5);
+    }
+
+    .underlineIndicators > .active {
+        border-color: hsl(var(--clr-white) / 1);
+    }
+
+    .navigation {
+        padding-inline: clamp(1.5rem, 15vw, 8rem);
+    }
+
 }
 
-.underlineIndicators > .active {
-    border-color: hsl(var(--clr-white) / 1);
+@media (min-width: 35em) and (max-width: 44.999em){
+    .navigation > * > div > span {
+        display: none;
+    }
+}
+
+
+@media (min-width: 45em) {
+    .header {
+        margin-block: 2rem;
+    }
+
+    .header::after {
+        content: '';
+        display: block;
+        position: relative;
+        height: 1px;
+        width: 100%;
+        justify-self: flex-end;
+        order: 1;
+        background: hsl( var(--clr-white) / .25);
+        margin-right: -3rem;
+    }
+
+    .navigation {
+        order: 2;
+        flex-shrink: 0;
+    }
 }
 
 .underlineIndicators span {

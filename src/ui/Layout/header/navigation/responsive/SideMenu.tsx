@@ -1,18 +1,15 @@
 import clsx from "clsx";
 import classes from "./SideMenu.module.css";
+import headerClasses from "../../Header.module.css";
 import React, { Fragment, useContext } from "react";
 import ReactDOM from "react-dom";
-import MenuContext from "../../../../context/menuContext/MenuContext";
+import MenuContext from "../../../../../context/menuContext/MenuContext";
 import { useSwipeable } from "react-swipeable";
-import { NavigationProps } from "../Header";
-import closeIcon from "../../../../assets/shared/icon-close.svg";
+import { NavigationProps } from "../../Header";
+import closeIcon from "../../../../../assets/shared/icon-close.svg";
+import NavList from "../NavList";
 
-const SideMenu = ({
-  homeClickHandler,
-  destinationClickHandler,
-  crewClickHandler,
-  technologyClickHandler,
-}: NavigationProps) => {
+const SideMenu = (props: NavigationProps) => {
   const menuContext = useContext(MenuContext);
   const { open, changeSideMenuState } = menuContext;
   const overlaysDiv = document.getElementById("overlays")!;
@@ -43,32 +40,16 @@ const SideMenu = ({
           <img src={closeIcon} alt="close icon" />
         </button>
       </div>
-      <ul className={clsx("flex", classes.list, "letterSpacing3", "uppercase")}>
-        <li onClick={homeClickHandler} className={""}>
-          <div>
-            <span>00</span>
-            Home
-          </div>
-        </li>
-        <li onClick={destinationClickHandler} className={""}>
-          <div>
-            <span>01</span>
-            Destinations
-          </div>
-        </li>
-        <li onClick={crewClickHandler} className={""}>
-          <div>
-            <span>02</span>
-            Crew
-          </div>
-        </li>
-        <li onClick={technologyClickHandler} className={""}>
-          <div>
-            <span>03</span>
-            Technology
-          </div>
-        </li>
-      </ul>
+      <NavList
+        {...props}
+        className={clsx(
+          "flex",
+          classes.list,
+          "letterSpacing3",
+          "uppercase",
+          headerClasses.underlineIndicators
+        )}
+      />
       <div className={classes.div} />
     </div>
   );

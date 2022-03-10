@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import MenuContext from "../../../../context/menuContext/MenuContext";
-import { NavigationProps } from "../Header";
-import hamburgerIcon from "../../../../assets/shared/icon-hamburger.svg";
+import MenuContext from "../../../../../context/menuContext/MenuContext";
+import { NavigationProps } from "../../Header";
+import hamburgerIcon from "../../../../../assets/shared/icon-hamburger.svg";
+import classes from "./Responsive.module.css";
 import SideMenu from "./SideMenu";
 
 const Responsive = (props: NavigationProps) => {
@@ -15,7 +16,7 @@ const Responsive = (props: NavigationProps) => {
   return (
     <div>
       {!open && (
-        <button onClick={hamburgerClickHandler}>
+        <button onClick={hamburgerClickHandler} className={classes.button}>
           <span className="srOnly">Menu</span>
           <div>
             <img src={hamburgerIcon} alt="menu icon" />

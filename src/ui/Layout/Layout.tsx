@@ -18,10 +18,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
   }, [location]);
 
   return (
-    <div className={clsx(classes.layout, "grid", backgroundState)}>
+    <main className={clsx(classes.layout, "grid", backgroundState)}>
       <Header />
       {children}
-    </div>
+    </main>
   );
 };
 
