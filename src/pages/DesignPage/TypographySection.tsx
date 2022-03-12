@@ -1,4 +1,4 @@
-import "../../index.scss";
+import "../../index.css";
 import classes from "./TypographySection.module.css";
 import clsx from "clsx";
 

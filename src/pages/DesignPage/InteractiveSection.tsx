@@ -1,4 +1,4 @@
-import "../../index.scss";
+import "../../index.css";
 import classes from "./InteractiveSection.module.css";
 import clsx from "clsx";
 

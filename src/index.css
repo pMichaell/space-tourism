@@ -1,26 +1,31 @@
 /*
 Custom properties
  */
+
 :root {
   /* colors */
   --clr-dark: 230 35% 7%;
   --clr-light: 231 77% 90%;
   --clr-white: 0 0% 100%;
+
   /* font-sizes */
   --fs-900: clamp(5rem, 8vw + 1rem, 9.375rem);
   --fs-800: 3.5rem;
   --fs-700: 1.5rem;
   --fs-600: 1rem;
   --fs-500: 1.75rem;
+  --fs-450: 1.1rem;
   --fs-400: 0.9375rem;
   --fs-300: 1rem;
   --fs-200: 0.875rem;
+
   /* font-families */
   --ff-serif: "Bellefair", serif;
   --ff-sans-cond: "Barlow Condensed", sans-serif;
   --ff-sans-normal: "Barlow", sans-serif;
 }
 
+/*//em, because safari treats them as other browsers in that way*/
 @media (min-width: 35em) {
   :root {
     --fs-800: 5rem;
@@ -29,6 +34,7 @@ Custom properties
     --fs-400: 1rem;
   }
 }
+
 @media (min-width: 45em) {
   :root {
     /* font-sizes */
@@ -38,6 +44,7 @@ Custom properties
     --fs-400: 1.125rem;
   }
 }
+
 /*
 ---------CSS RESET---------
  */
@@ -99,12 +106,18 @@ select {
   font: inherit;
 }
 
-ul, button {
+ul {
+  all:unset;
+  list-style: none;
+}
+
+button {
   all: unset;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  monospace;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -113,17 +126,19 @@ code {
   }
 
   *,
-*::before,
-*::after {
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 }
+
 /*
 -------CSS UTILITY CLASSES--------
  */
+
 .flex {
   display: flex;
   gap: var(--gap, 0);
@@ -138,11 +153,15 @@ code {
   display: block;
 }
 
+.textAlignCenter {
+  text-align: center;
+}
+
 /* .card :where(h1, h2, h3) assign properties to headers in card*/
+
 /* select every element which has sibling before it */
 .flow > * + * {
   margin-top: var(--flow-space, 1rem);
-  outline: 1px solid red;
 }
 
 .container {
@@ -159,21 +178,26 @@ code {
 }
 
 .gridContainer * {
-  max-width: 50ch;
+ max-width: 50ch;
 }
 
 @media (min-width: 45em) {
   .gridContainer {
     column-gap: var(--container-gap, 2rem);
+    /*//use this to keep columns in the middle, no matter which size is the screen*/
     grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(2rem, 1fr);
   }
 
+
+
   .gridContainer > *:first-child {
     grid-column: 2;
+    //outline: 1px solid red;
   }
 
   .gridContainer > *:last-child {
     grid-column: 3;
+    //outline: 1px solid yellow;
   }
 
   .gridContainerHome {
@@ -181,6 +205,7 @@ code {
     align-items: end;
   }
 }
+
 .fulfillParent {
   height: 100%;
   width: 100%;
@@ -194,17 +219,17 @@ code {
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  /* added line */
+  white-space: nowrap; /* added line */
   border: 0;
 }
+
 
 .skipToContent {
   position: absolute;
   z-index: 9999;
-  background: hsl(var(--clr-white));
-  color: hsl(var(--clr-dark));
-  padding: 0.5em 1em;
+  background: hsl( var(--clr-white) );
+  color: hsl( var(--clr-dark) );
+  padding: .5em 1em;
   margin-inline: auto;
   transform: translateY(-120%);
   transition: transform 250ms ease-in;
@@ -215,6 +240,7 @@ code {
 }
 
 /* colors */
+
 .bgDark {
   background-color: hsl(var(--clr-dark));
 }
@@ -240,6 +266,7 @@ code {
 }
 
 /* typography */
+
 .ffSerif {
   font-family: var(--ff-serif);
 }
@@ -288,6 +315,10 @@ code {
   font-size: var(--fs-500);
 }
 
+.fs450 {
+  font-size: var(--fs-450);
+}
+
 .fs400 {
   font-size: var(--fs-400);
 }
@@ -312,22 +343,26 @@ code {
   font-family: var(--ff-sans-cond);
   text-transform: uppercase;
   letter-spacing: 4.72px;
-  font-weight: 50;
 }
 
 .numberedTitle > span {
-  color: hsl(var(--clr-light)/0.25);
+  color: hsl(var(--clr-light) / 0.25);
   font-weight: 550;
   margin-right: 0.5em;
 }
+
+/*//Components*/
 
 .largeButton {
   font-size: 2rem;
   position: relative;
   display: grid;
+  /*declaring z-index in parent in order to create new
+   stacking context, which sudo element won't be able to escape*/
   z-index: 1;
   place-items: center;
   padding: 2em 2em;
+  /*to create a square*/
   aspect-ratio: 1;
   border-radius: 50%;
 }
@@ -336,7 +371,7 @@ code {
   content: "";
   position: absolute;
   z-index: -1;
-  background: hsl(var(--clr-white)/0.15);
+  background: hsl(var(--clr-white) / .15);
   width: 100%;
   height: 100%;
   border-radius: inherit;
@@ -344,10 +379,13 @@ code {
   transition: transform 750ms ease-in-out, opacity 500ms linear;
 }
 
+/*//animation sudo elements*/
 .largeButton:hover::after,
 .largeButton:focus::after {
   transform: scale(1.5);
   opacity: 1;
 }
 
-/*# sourceMappingURL=index.css.map */
+.active {
+
+}

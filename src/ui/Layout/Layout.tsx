@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useState } from "react";
-import "../../index.scss";
+import "../../index.css";
 import classes from "./Layout.module.css";
 import clsx from "clsx";
 import { useLocation } from "react-router-dom";

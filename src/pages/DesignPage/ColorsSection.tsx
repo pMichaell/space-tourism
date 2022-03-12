@@ -1,5 +1,5 @@
 import classes from "./ColorsSection.module.css";
-import "../../index.scss";
+import "../../index.css";
 import React from "react";
 import clsx from "clsx";
 

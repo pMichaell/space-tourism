@@ -1,4 +1,4 @@
-import "../../index.scss";
+import "../../index.css";
 import classes from "./HomePage.module.css";
 import clsx from "clsx";
 
@@ -9,15 +9,14 @@ const HomePage = () => {
     <div
       className={clsx("gridContainer", "gridContainerHome", "fulfillParent")}
     >
-      <div className={clsx(classes.gridDiv)}>
+      <div className={"flow"}>
         <h1
           className={clsx(
             "ffSansCond",
             "textAccent",
             "uppercase",
             "fs500",
-            "letterSpacing1",
-            classes.header
+            "letterSpacing1"
           )}
         >
           So, you want to travel to
@@ -25,14 +24,21 @@ const HomePage = () => {
             Space
           </span>
         </h1>
-        <p>
+        <p
+          className={clsx(
+            "textAccent",
+            "textAlignCenter",
+            "fs450",
+            classes.description
+          )}
+        >
           Let’s face it; if you want to go to space, you might as well genuinely
           go to outer space and not hover kind of on the edge of it. Well sit
           back, and relax because we’ll give you a truly out of this world
           experience!
         </p>
       </div>
-      <div className={classes.gridDiv}>
+      <div>
         <button
           onClick={exploreButtonHandler}
           className={clsx(

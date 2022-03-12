@@ -1,11 +1,12 @@
 import clsx from "clsx";
 import logo from "../../../assets/shared/logo.svg";
 import classes from "./Header.module.css";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Responsive from "./navigation/responsive/Responsive";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import NavList from "./navigation/NavList";
+import MenuContext from "../../../context/menuContext/MenuContext";
 
 export type NavigationProps = {
   homeClickHandler: () => void;
@@ -18,24 +19,29 @@ export type NavigationProps = {
 
 const Header = () => {
   const [navState, navStateSet] = useState<string | null>(null);
+  const { changeSideMenuState } = useContext(MenuContext);
   const windowDimensions = useWindowDimensions();
   const location = useLocation();
   const navigate = useNavigate();
 
   const homeClickHandler = () => {
     navigate("/");
+    changeSideMenuState?.();
   };
 
   const destinationClickHandler = () => {
     navigate("/destination");
+    changeSideMenuState?.();
   };
 
   const crewClickHandler = () => {
     navigate("/crew");
+    changeSideMenuState?.();
   };
 
   const technologyClickHandler = () => {
     navigate("/technology");
+    changeSideMenuState?.();
   };
 
   const defineClassName = (navElement: string) => {
