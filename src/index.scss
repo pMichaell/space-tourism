@@ -214,6 +214,22 @@ code {
   border: 0;
 }
 
+
+.skipToContent {
+  position: absolute;
+  z-index: 9999;
+  background: hsl( var(--clr-white) );
+  color: hsl( var(--clr-dark) );
+  padding: .5em 1em;
+  margin-inline: auto;
+  transform: translateY(-120%);
+  transition: transform 250ms ease-in;
+}
+
+.skipToContent:focus {
+  transform: translateY(0);
+}
+
 /* colors */
 
 .bgDark {

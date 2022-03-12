@@ -1,5 +1,7 @@
+import Planets from "./planets/Planets";
+
 const DestinationPage = () => {
-  return <></>;
+  return <Planets />;
 };
 
 export default DestinationPage;

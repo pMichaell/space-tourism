@@ -18,10 +18,15 @@ const Layout = ({ children }: { children: ReactNode }) => {
   }, [location]);
 
   return (
-    <main className={clsx(classes.layout, "grid", backgroundState)}>
+    <div className={clsx(classes.layout, "grid", backgroundState)}>
+      <a href="#main" className={clsx("skipToContent")}>
+        Skip to content
+      </a>
       <Header />
-      {children}
-    </main>
+      <main id="main" className="fulfillParent">
+        {children}
+      </main>
+    </div>
   );
 };
 
