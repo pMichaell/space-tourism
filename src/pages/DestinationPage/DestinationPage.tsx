@@ -3,13 +3,26 @@ import { useEffect, useState } from "react";
 import { Destination } from "../../interfaces";
 import classes from "./DestinationPage.module.css";
 import { useSwipeable } from "react-swipeable";
+import Planet from "./Planet";
 
 const data = require("../../data.json");
 const destinations: Destination[] = data.destinations;
 
 const DestinationPage = () => {
   const [planetInfo, setPlanetInfo] = useState<Destination>();
-  const [currentIndex, setCurrentIndex] = useState<number>();
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+  useEffect(() => {
+    const currentPlanet = localStorage.getItem("planet") ?? "Moon";
+    console.log(currentPlanet);
+    setPlanetInfo(getPlanetInfo(currentPlanet));
+    getCurrentIndex(currentPlanet);
+  }, [currentIndex]);
+
+  const handlers = useSwipeable({
+    onSwipedRight: () => switchDestination(false),
+    onSwipedLeft: () => switchDestination(true),
+  });
 
   const getPlanetInfo = (planetName: string) => {
     return destinations.filter((planet) => planet.name === planetName).shift();
@@ -20,13 +33,6 @@ const DestinationPage = () => {
       destinations.findIndex((planet) => planet.name === planetName)
     );
   };
-
-  useEffect(() => {
-    const currentPlanet = localStorage.getItem("planet") ?? "Moon";
-    console.log(currentPlanet);
-    setPlanetInfo(getPlanetInfo(currentPlanet));
-    getCurrentIndex(currentPlanet);
-  }, [currentIndex]);
 
   const switchDestination = (right: boolean) => {
     let newIndex: number;
@@ -39,11 +45,6 @@ const DestinationPage = () => {
     localStorage.setItem("planet", destinations[newIndex].name);
   };
 
-  const handlers = useSwipeable({
-    onSwipedRight: () => switchDestination(true),
-    onSwipedLeft: () => switchDestination(false),
-  });
-
   return (
     <div
       {...handlers}
@@ -54,12 +55,9 @@ const DestinationPage = () => {
         "container"
       )}
     >
-      <h2 className={clsx("numberedTitle", classes.title)}>
+      <h1 className={clsx("numberedTitle", classes.title)}>
         <span>01</span>Pick your destination
-      </h2>
-      <div>
-        <img alt="planet" className={classes[planetInfo?.name!]} />
-      </div>
+      </h1>
       <ul
         className={clsx(
           "flex",
@@ -70,56 +68,20 @@ const DestinationPage = () => {
           "letterSpacing3"
         )}
       >
-        <li>
+        <li className={clsx(planetInfo?.name === "Moon" && classes.active)}>
           <button>Moon</button>
         </li>
-        <li>
+        <li className={clsx(planetInfo?.name === "Mars" && classes.active)}>
           <button>Mars</button>
         </li>
-        <li>
+        <li className={clsx(planetInfo?.name === "Europa" && classes.active)}>
           <button>Europa</button>
         </li>
-        <li>
+        <li className={clsx(planetInfo?.name === "Titan" && classes.active)}>
           <button>Titan</button>
         </li>
       </ul>
-      <h2 className={clsx("uppercase", "ffSerif", "fs800")}>
-        {planetInfo?.name}
-      </h2>
-      <p className={clsx("textAccent", classes.description)}>
-        {planetInfo?.description}
-      </p>
-      <div className={classes.break} />
-      <div className={clsx("flow", "flex", classes.additionalInfo)}>
-        <p
-          className={clsx(
-            "uppercase",
-            "ffSerif",
-            "fs200",
-            "letterSpacing2",
-            "textAccent"
-          )}
-        >
-          Avg. Distance
-        </p>
-        <p className={clsx("uppercase", "fs500", "ffSerif")}>
-          {planetInfo?.distance}
-        </p>
-        <p
-          className={clsx(
-            "uppercase",
-            "ffSerif",
-            "fs200",
-            "letterSpacing2",
-            "textAccent"
-          )}
-        >
-          Est. Travel Time
-        </p>
-        <p className={clsx("uppercase", "fs500", "ffSerif")}>
-          {planetInfo?.travel}
-        </p>
-      </div>
+      <Planet {...destinations[currentIndex]} />
     </div>
   );
 };
