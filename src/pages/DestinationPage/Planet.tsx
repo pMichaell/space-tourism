@@ -1,21 +1,28 @@
-import destinationClasses from "./DestinationPage.module.css";
+import { motion } from "framer-motion";
+import classes from "./DestinationPage.module.css";
 import clsx from "clsx";
 import { Destination } from "../../interfaces";
 
 const Planet = (planetInfo: Destination) => {
   return (
-    <>
+    <motion.div
+      initial={{ x: 300, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: -300, opacity: 0 }}
+      transition={{ type: "tween", duration: 0.1 }}
+      className={clsx("flex", classes.planetDiv)}
+    >
       <div>
-        <img alt="planet" className={destinationClasses[planetInfo?.name!]} />
+        <img alt="planet" className={classes[planetInfo?.name!]} />
       </div>
       <h2 className={clsx("uppercase", "ffSerif", "fs800")}>
         {planetInfo?.name}
       </h2>
-      <p className={clsx("textAccent", destinationClasses.description)}>
+      <p className={clsx("textAccent", classes.description)}>
         {planetInfo?.description}
       </p>
-      <div className={destinationClasses.break} />
-      <div className={clsx("flow", "flex", destinationClasses.additionalInfo)}>
+      <div className={classes.break} />
+      <div className={clsx("flow", "flex", classes.additionalInfo)}>
         <p
           className={clsx(
             "uppercase",
@@ -45,7 +52,7 @@ const Planet = (planetInfo: Destination) => {
           {planetInfo?.travel}
         </p>
       </div>
-    </>
+    </motion.div>
   );
 };
 

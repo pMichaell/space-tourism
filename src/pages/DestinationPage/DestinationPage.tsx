@@ -3,26 +3,16 @@ import { useEffect, useState } from "react";
 import { Destination } from "../../interfaces";
 import classes from "./DestinationPage.module.css";
 import { useSwipeable } from "react-swipeable";
+import { wrap } from "popmotion";
 import Planet from "./Planet";
+import { AnimatePresence } from "framer-motion";
 
 const data = require("../../data.json");
 const destinations: Destination[] = data.destinations;
 
 const DestinationPage = () => {
   const [planetInfo, setPlanetInfo] = useState<Destination>();
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-
-  useEffect(() => {
-    const currentPlanet = localStorage.getItem("planet") ?? "Moon";
-    console.log(currentPlanet);
-    setPlanetInfo(getPlanetInfo(currentPlanet));
-    getCurrentIndex(currentPlanet);
-  }, [currentIndex]);
-
-  const handlers = useSwipeable({
-    onSwipedRight: () => switchDestination(false),
-    onSwipedLeft: () => switchDestination(true),
-  });
+  const [currentIndex, setCurrentIndex] = useState<number>();
 
   const getPlanetInfo = (planetName: string) => {
     return destinations.filter((planet) => planet.name === planetName).shift();
@@ -33,6 +23,25 @@ const DestinationPage = () => {
       destinations.findIndex((planet) => planet.name === planetName)
     );
   };
+
+  const [[page, direction], setPage] = useState([0, 0]);
+
+  // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
+  // then wrap that within 0-2 to find our image ID in the array below. By passing an
+  // absolute page index as the `motion` component's `key` prop, `AnimatePresence` will
+  // detect it as an entirely new image. So you can infinitely paginate as few as 1 images.
+  const imageIndex = wrap(0, destinations.length, page);
+
+  const paginate = (newDirection: number) => {
+    setPage([page + newDirection, newDirection]);
+  };
+
+  useEffect(() => {
+    const currentPlanet = localStorage.getItem("planet") ?? "Moon";
+    console.log(currentPlanet);
+    setPlanetInfo(getPlanetInfo(currentPlanet));
+    getCurrentIndex(currentPlanet);
+  }, [currentIndex]);
 
   const switchDestination = (right: boolean) => {
     let newIndex: number;
@@ -45,6 +54,11 @@ const DestinationPage = () => {
     localStorage.setItem("planet", destinations[newIndex].name);
   };
 
+  const handlers = useSwipeable({
+    onSwipedRight: () => switchDestination(false),
+    onSwipedLeft: () => switchDestination(true),
+  });
+
   return (
     <div
       {...handlers}
@@ -55,9 +69,10 @@ const DestinationPage = () => {
         "container"
       )}
     >
-      <h1 className={clsx("numberedTitle", classes.title)}>
+      <h2 className={clsx("numberedTitle", classes.title)}>
         <span>01</span>Pick your destination
-      </h1>
+      </h2>
+
       <ul
         className={clsx(
           "flex",
@@ -81,7 +96,13 @@ const DestinationPage = () => {
           <button>Titan</button>
         </li>
       </ul>
-      <Planet {...destinations[currentIndex]} />
+      <AnimatePresence exitBeforeEnter>
+        {destinations
+          .filter((_, index) => index === currentIndex)
+          .map((dest) => (
+            <Planet key={currentIndex} {...dest} />
+          ))}
+      </AnimatePresence>
     </div>
   );
 };
