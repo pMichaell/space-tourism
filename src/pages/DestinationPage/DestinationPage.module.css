@@ -1,7 +1,7 @@
 .destinationPage {
     flex-direction: column;
     align-items: center;
-    gap: 5vh;
+    gap: 3vh;
     overflow: hidden;
 }
 
@@ -11,9 +11,12 @@
 
 .planetList {
     --gap: 1rem;
+    align-items: center;
 }
 
 .planetList > li {
+    display: grid;
+    place-items: center;
     position: relative;
     border-bottom: .1rem solid hsl(var(--clr-white) / 0);
 }
@@ -30,9 +33,6 @@
     align-items: center;
     justify-content: space-evenly;
     flex: 1;
-}
-
-.image {
 }
 
 .description {
@@ -62,6 +62,8 @@
 
 }
 
+
+
 .break {
     width: 90%;
     height: 1px;
@@ -71,4 +73,36 @@
 .additionalInfo {
     flex-direction: column;
     align-items: center;
+    gap: clamp(0.3rem, 1vh, 2rem);
+}
+
+@media (min-width: 35em) {
+    .Mars {
+        max-width: 300px;
+    }
+
+    .Moon {
+        max-width: 300px;
+    }
+
+    .Europa {
+        max-width: 300px;
+    }
+
+    .Titan {
+        max-width: 300px;
+    }
+
+    .additionalInfo {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        --gap: 1rem;
+    }
+
+    .additionalInfo > div {
+        display: grid;
+        place-items: center;
+    }
 }

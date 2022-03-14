@@ -1,8 +1,34 @@
 import classes from "./DestinationPage.module.css";
 import clsx from "clsx";
 import { Destination } from "../../interfaces";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
+import SubHeading from "../../ui/heading/SubHeading";
+import { Fragment } from "react";
 
 const Planet = ({ name, description, distance, travel }: Destination) => {
+  const { width } = useWindowDimensions();
+
+  const additionalInfoContents =
+    width < 560 ? (
+      <Fragment>
+        <SubHeading size={2}>Avg. Distance</SubHeading>
+        <SubHeading size={1}>{distance}</SubHeading>
+        <SubHeading size={2}>Est. Travel Time</SubHeading>
+        <SubHeading size={1}>{travel}</SubHeading>
+      </Fragment>
+    ) : (
+      <Fragment>
+        <div>
+          <SubHeading size={2}>Avg. Distance</SubHeading>
+          <SubHeading size={1}>{distance}</SubHeading>
+        </div>
+        <div>
+          <SubHeading size={2}>Est. Travel Time</SubHeading>
+          <SubHeading size={1}>{travel}</SubHeading>
+        </div>
+      </Fragment>
+    );
+
   return (
     <>
       <div>
@@ -11,31 +37,8 @@ const Planet = ({ name, description, distance, travel }: Destination) => {
       <h2 className={clsx("uppercase", "ffSerif", "fs800")}>{name}</h2>
       <p className={clsx("textAccent", classes.description)}>{description}</p>
       <div className={classes.break} />
-      <div className={clsx("flow", "flex", classes.additionalInfo)}>
-        <p
-          className={clsx(
-            "uppercase",
-            "ffSerif",
-            "fs200",
-            "letterSpacing2",
-            "textAccent"
-          )}
-        >
-          Avg. Distance
-        </p>
-        <p className={clsx("uppercase", "fs500", "ffSerif")}>{distance}</p>
-        <p
-          className={clsx(
-            "uppercase",
-            "ffSerif",
-            "fs200",
-            "letterSpacing2",
-            "textAccent"
-          )}
-        >
-          Est. Travel Time
-        </p>
-        <p className={clsx("uppercase", "fs500", "ffSerif")}>{travel}</p>
+      <div className={clsx("flex", classes.additionalInfo)}>
+        {additionalInfoContents}
       </div>
     </>
   );

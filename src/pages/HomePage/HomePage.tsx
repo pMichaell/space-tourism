@@ -1,9 +1,13 @@
 import "../../index.css";
 import classes from "./HomePage.module.css";
 import clsx from "clsx";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const exploreButtonHandler = () => {};
+  const navigate = useNavigate();
+  const exploreButtonHandler = () => {
+    navigate("./destination");
+  };
 
   return (
     <div

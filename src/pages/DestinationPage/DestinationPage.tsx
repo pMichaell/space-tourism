@@ -5,6 +5,7 @@ import classes from "./DestinationPage.module.css";
 import { wrap } from "popmotion";
 import { AnimatePresence, motion } from "framer-motion";
 import Planet from "./Planet";
+import { CaretLeft, CaretRight } from "phosphor-react";
 
 const data = require("../../data.json");
 const destinations: Destination[] = data.destinations;
@@ -45,6 +46,10 @@ const DestinationPage = () => {
     setPage([page + newDirection, newDirection]);
   };
 
+  const leftButtonClickHandler = () => paginate(-1);
+
+  const rightButtonClickHandler = () => paginate(1);
+
   useEffect(() => {
     setPlanetInfo(destinations[planetIndex]);
   }, [planetIndex]);
@@ -72,6 +77,13 @@ const DestinationPage = () => {
           "letterSpacing3"
         )}
       >
+        <li>
+          <CaretLeft
+            onClick={leftButtonClickHandler}
+            color="white"
+            size="1.5em"
+          />
+        </li>
         <li className={clsx(planetInfo?.name === "Moon" && classes.active)}>
           <button>Moon</button>
         </li>
@@ -83,6 +95,13 @@ const DestinationPage = () => {
         </li>
         <li className={clsx(planetInfo?.name === "Titan" && classes.active)}>
           <button>Titan</button>
+        </li>
+        <li>
+          <CaretRight
+            onClick={rightButtonClickHandler}
+            color="white"
+            size="1.5em"
+          />
         </li>
       </ul>
       <AnimatePresence exitBeforeEnter>
