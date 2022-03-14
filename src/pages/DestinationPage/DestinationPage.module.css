@@ -35,74 +35,18 @@
     flex: 1;
 }
 
-.description {
-    text-align: center;
-}
 
-.Mars {
-    content: url("../../assets/destination/image-mars.png");
-    max-width: 170px;
-}
-
-.Moon {
-    content: url("../../assets/destination/image-moon.png");
-    max-width: 170px;
-
-}
-
-.Europa {
-    content: url("../../assets/destination/image-europa.png");
-    max-width: 170px;
-
-}
-
-.Titan {
-    content: url("../../assets/destination/image-titan.png");
-    max-width: 170px;
-
-}
-
-
-
-.break {
-    width: 90%;
-    height: 1px;
-    background-color: hsl(var(--clr-white) / .15);
-}
-
-.additionalInfo {
-    flex-direction: column;
-    align-items: center;
-    gap: clamp(0.3rem, 1vh, 2rem);
-}
-
-@media (min-width: 35em) {
-    .Mars {
-        max-width: 300px;
-    }
-
-    .Moon {
-        max-width: 300px;
-    }
-
-    .Europa {
-        max-width: 300px;
-    }
-
-    .Titan {
-        max-width: 300px;
-    }
-
-    .additionalInfo {
-        width: 100%;
+@media (min-width: 1024px) {
+    .planetDiv {
         flex-direction: row;
+        height: 100%;
         align-items: center;
-        justify-content: space-evenly;
-        --gap: 1rem;
+        justify-content: space-between;
+        flex: 1;
+        padding-bottom: clamp(1rem, 12vh, 5rem);
     }
 
-    .additionalInfo > div {
-        display: grid;
-        place-items: center;
+    .title {
+        --fs-500: 1.75rem;
     }
 }

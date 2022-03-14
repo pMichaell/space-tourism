@@ -93,14 +93,12 @@
 }
 
 
-@media (min-width: 1000px) {
+@media (min-width: 1024px) {
     .line {
         position: absolute;
         height: 1px;
-        width: 20%;
         background-color: hsl(var(--clr-white) / .25);
         z-index: 1;
-        left: 18%
     }
 
     .header {
@@ -123,6 +121,7 @@
         order: 2;
         flex-shrink: 0;
         flex-basis: 40%;
+        margin-left: 10px;
     }
 }
 

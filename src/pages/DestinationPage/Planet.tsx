@@ -1,4 +1,4 @@
-import classes from "./DestinationPage.module.css";
+import classes from "./Planet.module.css";
 import clsx from "clsx";
 import { Destination } from "../../interfaces";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
@@ -29,17 +29,33 @@ const Planet = ({ name, description, distance, travel }: Destination) => {
       </Fragment>
     );
 
+  const bodyContents =
+    width < 1024 ? (
+      <Fragment>
+        <h2 className={clsx("uppercase", "ffSerif", "fs800")}>{name}</h2>
+        <p className={clsx("textAccent", classes.description)}>{description}</p>
+        <div className={classes.break} />
+        <div className={clsx("flex", classes.additionalInfo)}>
+          {additionalInfoContents}
+        </div>
+      </Fragment>
+    ) : (
+      <div className={clsx("flex", classes.destinationDesc)}>
+        <h2 className={clsx("uppercase", "ffSerif", "fs800")}>{name}</h2>
+        <p className={clsx("textAccent", classes.description)}>{description}</p>
+        <div className={classes.break} />
+        <div className={clsx("flex", classes.additionalInfo)}>
+          {additionalInfoContents}
+        </div>
+      </div>
+    );
+
   return (
     <>
       <div>
         <img alt="planet" className={classes[name!]} />
       </div>
-      <h2 className={clsx("uppercase", "ffSerif", "fs800")}>{name}</h2>
-      <p className={clsx("textAccent", classes.description)}>{description}</p>
-      <div className={classes.break} />
-      <div className={clsx("flex", classes.additionalInfo)}>
-        {additionalInfoContents}
-      </div>
+      {bodyContents}
     </>
   );
 };

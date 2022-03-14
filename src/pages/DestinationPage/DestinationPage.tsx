@@ -66,7 +66,6 @@ const DestinationPage = () => {
       <h2 className={clsx("numberedTitle", classes.title)}>
         <span>01</span>Pick your destination
       </h2>
-
       <ul
         className={clsx(
           "flex",
@@ -77,13 +76,13 @@ const DestinationPage = () => {
           "letterSpacing3"
         )}
       >
-        <li>
+        <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
           <CaretLeft
             onClick={leftButtonClickHandler}
             color="white"
             size="1.5em"
           />
-        </li>
+        </motion.li>
         <li className={clsx(planetInfo?.name === "Moon" && classes.active)}>
           <button>Moon</button>
         </li>
@@ -96,13 +95,13 @@ const DestinationPage = () => {
         <li className={clsx(planetInfo?.name === "Titan" && classes.active)}>
           <button>Titan</button>
         </li>
-        <li>
+        <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
           <CaretRight
             onClick={rightButtonClickHandler}
             color="white"
             size="1.5em"
           />
-        </li>
+        </motion.li>
       </ul>
       <AnimatePresence exitBeforeEnter>
         {destinations
