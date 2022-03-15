@@ -44,11 +44,16 @@
 
 }
 
+.memberInfoDiv {
+    flex-direction: column;
+    --gap: clamp(1rem, 3vh, 3rem)
+}
+
 .headingsDiv {
     flex-direction: column;
     align-items: center;
     justify-items: center;
-    --gap: clamp(0.3rem, 1vh, 1rem)
+    --gap: clamp(0.3rem, 1vh, 1rem);
 }
 
 .crewMemberDiv {
@@ -70,4 +75,8 @@
 .bodyText {
     text-align: center;
     font-size: 1.2rem;
+}
+
+@media (min-width: 560px) {
+
 }

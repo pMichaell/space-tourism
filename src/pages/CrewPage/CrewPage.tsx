@@ -5,8 +5,8 @@ import { wrap } from "popmotion";
 import { motion } from "framer-motion";
 import classes from "./CrewPage.module.css";
 import { CaretLeft, CaretRight } from "phosphor-react";
-import BodyText from "../../ui/typography/BodyText";
-import Heading from "../../ui/typography/Heading";
+import MemberImg from "./crewMember/MemberImg";
+import MemberInfo from "./crewMember/MemberInfo";
 
 const data = require("../../data.json");
 const crew: CrewMember[] = data.crew;
@@ -38,10 +38,11 @@ const swipePower = (offset: number, velocity: number) => {
 };
 
 const CrewPage = () => {
-  const [memberInfo, setMemberInfo] = useState<CrewMember>();
   const [[page, direction], setPage] = useState([0, 0]);
 
   const memberIndex = wrap(0, crew.length, page);
+
+  const { name, role, bio } = crew[memberIndex];
 
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
@@ -110,22 +111,8 @@ const CrewPage = () => {
                 }
               }}
             >
-              <div className={classes.imgDiv}>
-                <img
-                  src={require("../../assets/crew/image-" +
-                    crew[memberIndex].name.toLowerCase().replaceAll(" ", "-") +
-                    ".png")}
-                  alt={crewMember.name + " team member"}
-                  className={classes.img}
-                />
-              </div>
-              <div className={clsx("flex", classes.headingsDiv)}>
-                <Heading size={4} className={classes.crewMemberRole}>
-                  {crewMember.role}
-                </Heading>
-                <Heading size={3}>{crewMember.name}</Heading>
-              </div>
-              <BodyText className={classes.bodyText}>{crewMember.bio}</BodyText>
+              <MemberImg memberName={name} />
+              <MemberInfo name={name} role={role} bio={bio} />
             </motion.div>
           );
         })}
