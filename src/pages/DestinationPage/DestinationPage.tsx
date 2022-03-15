@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Destination } from "../../interfaces";
 import classes from "./DestinationPage.module.css";
 import { wrap } from "popmotion";
@@ -37,7 +37,6 @@ const swipePower = (offset: number, velocity: number) => {
 };
 
 const DestinationPage = () => {
-  const [planetInfo, setPlanetInfo] = useState<Destination>();
   const [[page, direction], setPage] = useState([0, 0]);
 
   const planetIndex = wrap(0, destinations.length, page);
@@ -50,10 +49,6 @@ const DestinationPage = () => {
 
   const rightButtonClickHandler = () => paginate(1);
 
-  useEffect(() => {
-    setPlanetInfo(destinations[planetIndex]);
-  }, [planetIndex]);
-
   return (
     <div
       className={clsx(
@@ -63,7 +58,7 @@ const DestinationPage = () => {
         "container"
       )}
     >
-      <h2 className={clsx("numberedTitle", classes.title)}>
+      <h2 className={clsx("numberedTitle")}>
         <span>01</span>Pick your destination
       </h2>
       <ul
@@ -83,16 +78,32 @@ const DestinationPage = () => {
             size="1.5em"
           />
         </motion.li>
-        <li className={clsx(planetInfo?.name === "Moon" && classes.active)}>
+        <li
+          className={clsx(
+            destinations[planetIndex].name === "Moon" && classes.active
+          )}
+        >
           <button>Moon</button>
         </li>
-        <li className={clsx(planetInfo?.name === "Mars" && classes.active)}>
+        <li
+          className={clsx(
+            destinations[planetIndex].name === "Mars" && classes.active
+          )}
+        >
           <button>Mars</button>
         </li>
-        <li className={clsx(planetInfo?.name === "Europa" && classes.active)}>
+        <li
+          className={clsx(
+            destinations[planetIndex].name === "Europa" && classes.active
+          )}
+        >
           <button>Europa</button>
         </li>
-        <li className={clsx(planetInfo?.name === "Titan" && classes.active)}>
+        <li
+          className={clsx(
+            destinations[planetIndex].name === "Titan" && classes.active
+          )}
+        >
           <button>Titan</button>
         </li>
         <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>

@@ -5,10 +5,6 @@
     overflow: hidden;
 }
 
-.title {
-    --fs-500: 1.2rem;
-}
-
 .planetList {
     --gap: 1rem;
     align-items: center;
@@ -46,7 +42,4 @@
         padding-bottom: clamp(1rem, 12vh, 5rem);
     }
 
-    .title {
-        --fs-500: 1.75rem;
-    }
 }

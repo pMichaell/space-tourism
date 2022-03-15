@@ -8,27 +8,8 @@
     text-align: center;
 }
 
-.Mars {
-    content: url("../../assets/destination/image-mars.png");
+.imgDiv {
     max-width: 170px;
-}
-
-.Moon {
-    content: url("../../assets/destination/image-moon.png");
-    max-width: 170px;
-
-}
-
-.Europa {
-    content: url("../../assets/destination/image-europa.png");
-    max-width: 170px;
-
-}
-
-.Titan {
-    content: url("../../assets/destination/image-titan.png");
-    max-width: 170px;
-
 }
 
 .additionalInfo {
@@ -38,19 +19,7 @@
 }
 
 @media (min-width: 560px) {
-    .Mars {
-        max-width: 300px;
-    }
-
-    .Moon {
-        max-width: 300px;
-    }
-
-    .Europa {
-        max-width: 300px;
-    }
-
-    .Titan {
+    .imgDiv {
         max-width: 300px;
     }
 
@@ -70,21 +39,10 @@
 }
 
 @media (min-width: 1024px) {
-    .Mars {
+    .imgDiv {
         max-width: 445px;
     }
 
-    .Moon {
-        max-width: 445px;
-    }
-
-    .Europa {
-        max-width: 445px;
-    }
-
-    .Titan {
-        max-width: 445px;
-    }
 }
 
 .destinationDesc {

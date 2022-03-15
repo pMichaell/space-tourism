@@ -1,0 +1,73 @@
+.crewPage {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    margin-inline: auto;
+    --gap: 1.5rem;
+    padding-inline: 1.5rem;
+    max-width: 80rem;
+}
+
+.dotIndicators {
+    --gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.dotIndicators > :not(button) {
+    padding: 0.4rem;
+    border-radius: 50%;
+    background: hsl(var(--clr-white) / .25);
+    display: block;
+}
+
+.dotIndicators button {
+    display: grid;
+    place-items: center;
+}
+
+.dotIndicators > .active {
+    background: hsl(var(--clr-white));
+}
+
+
+.img {
+    max-height: 300px;
+}
+
+.imgDiv {
+  width: 100%;
+    display: grid;
+    place-items: center;
+    border-bottom: 1px solid hsl(var(--clr-white) / 0.25);
+
+}
+
+.headingsDiv {
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    --gap: clamp(0.3rem, 1vh, 1rem)
+}
+
+.crewMemberDiv {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-basis: 80%;
+    margin-bottom: clamp(1rem, 5vh, 3rem);
+}
+
+.crewMemberRole {
+  color: hsl(var(--clr-white) / 0.5);
+}
+
+.crewMemberName {
+    --fs-800: 4.5rem
+}
+
+.bodyText {
+    text-align: center;
+    font-size: 1.2rem;
+}

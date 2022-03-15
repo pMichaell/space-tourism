@@ -11,10 +11,10 @@ Custom properties
   /* font-sizes */
   --fs-900: clamp(5rem, 8vw + 1rem, 9.375rem);
   --fs-800: 3.5rem;
-  --fs-700: 1.5rem;
+  --fs-700: 2rem;
   --fs-600: 1rem;
   --fs-500: 1.75rem;
-  --fs-450: 1.1rem;
+  --fs-450: 1.2rem;
   --fs-400: 0.9375rem;
   --fs-300: 1rem;
   --fs-200: 0.875rem;
@@ -338,19 +338,6 @@ code {
   line-height: 1.1;
 }
 
-.numberedTitle {
-  font-size: var(--fs-500);
-  font-family: var(--ff-sans-cond);
-  text-transform: uppercase;
-  letter-spacing: 4.72px;
-}
-
-.numberedTitle > span {
-  color: hsl(var(--clr-light) / 0.25);
-  font-weight: 550;
-  margin-right: 0.5em;
-}
-
 /*//Components*/
 
 .largeButton {
@@ -385,6 +372,26 @@ code {
   transform: scale(1.5);
   opacity: 1;
 }
+
+.numberedTitle {
+  font-size: var(--fs-450);
+  font-family: var(--ff-sans-cond);
+  text-transform: uppercase;
+  letter-spacing: 4.72px;
+}
+
+.numberedTitle > span {
+  color: hsl(var(--clr-light) / 0.25);
+  font-weight: 550;
+  margin-right: 0.5em;
+}
+
+@media (min-width: 560px) {
+  .numberedTitle {
+    font-size: var(--fs-500);
+  }
+}
+
 
 .active {
 

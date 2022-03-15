@@ -2,8 +2,9 @@ import classes from "./Planet.module.css";
 import clsx from "clsx";
 import { Destination } from "../../interfaces";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
-import SubHeading from "../../ui/heading/SubHeading";
+import SubHeading from "../../ui/typography/SubHeading";
 import { Fragment } from "react";
+import Heading from "../../ui/typography/Heading";
 
 const Planet = ({ name, description, distance, travel }: Destination) => {
   const { width } = useWindowDimensions();
@@ -41,7 +42,7 @@ const Planet = ({ name, description, distance, travel }: Destination) => {
       </Fragment>
     ) : (
       <div className={clsx("flex", classes.destinationDesc)}>
-        <h2 className={clsx("uppercase", "ffSerif", "fs800")}>{name}</h2>
+        <Heading size={2}>{name}</Heading>
         <p className={clsx("textAccent", classes.description)}>{description}</p>
         <div className={classes.break} />
         <div className={clsx("flex", classes.additionalInfo)}>
@@ -53,7 +54,13 @@ const Planet = ({ name, description, distance, travel }: Destination) => {
   return (
     <>
       <div>
-        <img alt="planet" className={classes[name!]} />
+        <img
+          src={require("../../assets/destination/image-" +
+            name.toLowerCase() +
+            ".png")}
+          alt="planet"
+          className={classes.imgDiv}
+        />
       </div>
       {bodyContents}
     </>
