@@ -1,4 +1,5 @@
 .crewPage {
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -7,6 +8,14 @@
     --gap: 1.5rem;
     padding-inline: 1.5rem;
     max-width: 80rem;
+}
+
+.upperSection {
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
 }
 
 .dotIndicators {
@@ -31,17 +40,23 @@
     background: hsl(var(--clr-white));
 }
 
+.crewMemberDiv {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-basis: 80%;
+    margin-bottom: max(5vh, 3rem);
+}
 
 .img {
     max-height: 300px;
 }
 
 .imgDiv {
-  width: 100%;
+    width: 100%;
     display: grid;
     place-items: center;
     border-bottom: 1px solid hsl(var(--clr-white) / 0.25);
-
 }
 
 .memberInfoDiv {
@@ -49,23 +64,15 @@
     --gap: clamp(1rem, 3vh, 3rem)
 }
 
-.headingsDiv {
+.memberInfoHeadings {
     flex-direction: column;
     align-items: center;
     justify-items: center;
     --gap: clamp(0.3rem, 1vh, 1rem);
 }
 
-.crewMemberDiv {
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-basis: 80%;
-    margin-bottom: clamp(1rem, 5vh, 3rem);
-}
-
 .crewMemberRole {
-  color: hsl(var(--clr-white) / 0.5);
+    color: hsl(var(--clr-white) / 0.5);
 }
 
 .crewMemberName {
@@ -78,5 +85,66 @@
 }
 
 @media (min-width: 560px) {
+    .upperSection{
+        margin-bottom: clamp(0.5rem, 2vh, 1rem);
+    }
 
+
+    .imgDiv {
+        border-bottom: none;
+    }
+
+    .img {
+        min-height: 650px;
+    }
+
+    .crewMemberDiv {
+        margin-bottom: unset;
+    }
+
+    .memberInfoDiv {
+        margin-bottom: 1rem;
+        --gap: clamp(1rem, 2vh, 3rem)
+    }
+}
+
+@media (min-width: 1024px) {
+    .crewPage {
+        max-width: unset;
+    }
+
+    .crewMemberDiv {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .imgDiv {
+        align-self: flex-end;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .memberInfoDiv {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: clamp(1rem, 10vw, 30%);
+        gap: clamp(1rem, 5vh, 2.5rem);
+        width: 75%;
+    }
+
+    .memberInfoHeadings {
+        align-items: flex-start;
+        width: 50%;
+    }
+
+    .bodyText {
+        text-align: left;
+        width: 75%;
+    }
+
+    .img {
+
+    }
 }

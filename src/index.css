@@ -111,6 +111,10 @@ ul {
   list-style: none;
 }
 
+section {
+    all: unset;
+}
+
 button {
   all: unset;
 }

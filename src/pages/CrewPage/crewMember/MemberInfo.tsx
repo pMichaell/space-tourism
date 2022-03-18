@@ -14,7 +14,7 @@ const MemberInfo = ({
 }) => {
   return (
     <div className={clsx("flex", classes.memberInfoDiv)}>
-      <div className={clsx("flex", classes.headingsDiv)}>
+      <div className={clsx("flex", classes.memberInfoHeadings)}>
         <Heading size={4} className={classes.crewMemberRole}>
           {role}
         </Heading>

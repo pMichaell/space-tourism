@@ -78,7 +78,7 @@
 
 }
 
-@media (min-width: 560px) and (max-width: 999.99px){
+@media (min-width: 560px) and (max-width: 1024px){
     .navigation > * > div > span {
         display: none;
     }
