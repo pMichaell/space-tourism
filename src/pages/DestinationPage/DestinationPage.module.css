@@ -23,7 +23,7 @@
 }
 
 
-.planetDiv {
+.planetSection {
     height: 100%;
     flex-direction: column;
     align-items: center;
@@ -33,7 +33,7 @@
 
 
 @media (min-width: 1024px) {
-    .planetDiv {
+    .planetSection {
         flex-direction: row;
         height: 100%;
         align-items: center;

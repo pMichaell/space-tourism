@@ -1,11 +1,11 @@
 import clsx from "clsx";
-import { useState } from "react";
 import { Destination } from "../../interfaces";
 import classes from "./DestinationPage.module.css";
-import { wrap } from "popmotion";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Planet from "./Planet";
 import { CaretLeft, CaretRight } from "phosphor-react";
+import useSlider from "../../ui/contentSlider/useSlider";
+import ContentSlider from "../../ui/contentSlider/ContentSlider";
 
 const data = require("../../data.json");
 const destinations: Destination[] = data.destinations;
@@ -37,13 +37,7 @@ const swipePower = (offset: number, velocity: number) => {
 };
 
 const DestinationPage = () => {
-  const [[page, direction], setPage] = useState([0, 0]);
-
-  const planetIndex = wrap(0, destinations.length, page);
-
-  const paginate = (newDirection: number) => {
-    setPage([page + newDirection, newDirection]);
-  };
+  const { page, direction, currentIndex, paginate } = useSlider(destinations);
 
   const leftButtonClickHandler = () => paginate(-1);
 
@@ -80,28 +74,28 @@ const DestinationPage = () => {
         </motion.li>
         <li
           className={clsx(
-            destinations[planetIndex].name === "Moon" && classes.active
+            destinations[currentIndex].name === "Moon" && classes.active
           )}
         >
           <button>Moon</button>
         </li>
         <li
           className={clsx(
-            destinations[planetIndex].name === "Mars" && classes.active
+            destinations[currentIndex].name === "Mars" && classes.active
           )}
         >
           <button>Mars</button>
         </li>
         <li
           className={clsx(
-            destinations[planetIndex].name === "Europa" && classes.active
+            destinations[currentIndex].name === "Europa" && classes.active
           )}
         >
           <button>Europa</button>
         </li>
         <li
           className={clsx(
-            destinations[planetIndex].name === "Titan" && classes.active
+            destinations[currentIndex].name === "Titan" && classes.active
           )}
         >
           <button>Titan</button>
@@ -114,46 +108,18 @@ const DestinationPage = () => {
           />
         </motion.li>
       </ul>
-      <AnimatePresence exitBeforeEnter>
-        {destinations
-          .filter((_, index) => index === planetIndex)
-          .map(() => {
-            return (
-              <motion.div
-                className={clsx("flex", classes.planetDiv)}
-                key={page}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: {
-                    type: "tween",
-                    stiffness: 300,
-                    damping: 30,
-                    duration: 0.2,
-                  },
-                  opacity: { duration: 0.2 },
-                }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
-                onDragEnd={(e, { offset, velocity }) => {
-                  const swipe = swipePower(offset.x, velocity.x);
-
-                  if (swipe < -swipeConfidenceThreshold) {
-                    paginate(1);
-                  } else if (swipe > swipeConfidenceThreshold) {
-                    paginate(-1);
-                  }
-                }}
-              >
-                <Planet {...destinations[planetIndex]} />
-              </motion.div>
-            );
-          })}
-      </AnimatePresence>
+      {destinations
+        .filter((_, index) => index === currentIndex)
+        .map(() => {
+          return (
+            <ContentSlider
+              sliderMovement={{ page, direction, paginate }}
+              className={clsx("flex", classes.planetSection)}
+            >
+              <Planet {...destinations[currentIndex]} />
+            </ContentSlider>
+          );
+        })}
     </div>
   );
 };
