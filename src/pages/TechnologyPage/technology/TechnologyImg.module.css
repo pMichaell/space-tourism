@@ -1,0 +1,19 @@
+.imgDiv {
+    width: 100%;
+}
+
+.imgDiv > img {
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .imgDiv {
+        width: unset;
+        display: grid;
+        place-items: flex-end;
+    }
+
+    .imgDiv > img {
+
+    }
+}

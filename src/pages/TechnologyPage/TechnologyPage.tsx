@@ -16,10 +16,12 @@ const TechnologyPage = () => {
 
   return (
     <div className={clsx("fulfillParent", "flex", classes.technologyPage)}>
-      <h2 className={"numberedTitle"}>
+      <h2 className={clsx("numberedTitle", classes.heading)}>
         <span>03</span>Space Launch 101
       </h2>
-      <section className={clsx("flex", classes.contentSection)}>
+      <section
+        className={clsx("flex", "fulfillParent", classes.contentSection)}
+      >
         {technologies
           .filter((_, index) => index === currentIndex)
           .map(() => {
@@ -27,6 +29,7 @@ const TechnologyPage = () => {
               <ContentSlider
                 sliderMovement={{ page, direction, paginate }}
                 key={page}
+                className={clsx(classes.imgSection)}
               >
                 <TechnologyImg technologyName={name} />
               </ContentSlider>
@@ -37,19 +40,20 @@ const TechnologyPage = () => {
           <li className={clsx(currentIndex === 1 && classes.active)}>2</li>
           <li className={clsx(currentIndex === 2 && classes.active)}>3</li>
         </ul>
+        {technologies
+          .filter((_, index) => index === currentIndex)
+          .map(() => {
+            return (
+              <ContentSlider
+                sliderMovement={{ page, direction, paginate }}
+                key={page}
+                className={clsx("flex", classes.infoSection)}
+              >
+                <TechnologyInfo name={name} description={description} />
+              </ContentSlider>
+            );
+          })}
       </section>
-      {technologies
-        .filter((_, index) => index === currentIndex)
-        .map(() => {
-          return (
-            <ContentSlider
-              sliderMovement={{ page, direction, paginate }}
-              key={page}
-            >
-              <TechnologyInfo name={name} description={description} />
-            </ContentSlider>
-          );
-        })}
     </div>
   );
 };

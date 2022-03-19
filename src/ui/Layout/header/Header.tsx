@@ -19,29 +19,29 @@ export type NavigationProps = {
 
 const Header = () => {
   const [navState, navStateSet] = useState<string | null>(null);
-  const { changeSideMenuState } = useContext(MenuContext);
+  const { open, changeSideMenuState } = useContext(MenuContext);
   const windowDimensions = useWindowDimensions();
   const location = useLocation();
   const navigate = useNavigate();
 
   const homeClickHandler = () => {
     navigate("/");
-    changeSideMenuState?.();
+    open && changeSideMenuState?.();
   };
 
   const destinationClickHandler = () => {
     navigate("/destination");
-    changeSideMenuState?.();
+    open && changeSideMenuState?.();
   };
 
   const crewClickHandler = () => {
     navigate("/crew");
-    changeSideMenuState?.();
+    open && changeSideMenuState?.();
   };
 
   const technologyClickHandler = () => {
     navigate("/technology");
-    changeSideMenuState?.();
+    open && changeSideMenuState?.();
   };
 
   const defineClassName = (navElement: string) => {

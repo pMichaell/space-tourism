@@ -3,6 +3,7 @@ import BodyText from "../../../ui/typography/BodyText";
 import Heading from "../../../ui/typography/Heading";
 import { Fragment } from "react";
 import clsx from "clsx";
+import useWindowDimensions from "../../../hooks/useWindowDimensions";
 
 const TechnologyInfo = ({
   name,
@@ -11,6 +12,7 @@ const TechnologyInfo = ({
   name: string;
   description: string;
 }) => {
+  const { width } = useWindowDimensions();
   return (
     <Fragment>
       <section className={classes.headingSection}>
@@ -24,9 +26,9 @@ const TechnologyInfo = ({
         >
           The terminology...
         </p>
-        <Heading size={4}>{name}</Heading>
+        <Heading size={width > 560 ? 3 : 4}>{name}</Heading>
       </section>
-      <BodyText>{description}</BodyText>
+      <BodyText className={classes.bodyText}>{description}</BodyText>
     </Fragment>
   );
 };
