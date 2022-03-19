@@ -58,6 +58,7 @@ const CrewPage = () => {
             <ContentSlider
               sliderMovement={{ page, direction, paginate }}
               className={clsx("flex", classes.crewMemberSection)}
+              key={page}
             >
               {width < 560 && (
                 <Fragment>

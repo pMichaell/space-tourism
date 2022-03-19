@@ -1,7 +1,10 @@
-import { Technology } from "../../interfaces";
 import classes from "./TechnologyPage.module.css";
 import clsx from "clsx";
 import useSlider from "../../ui/contentSlider/useSlider";
+import { Technology } from "../../interfaces";
+import ContentSlider from "../../ui/contentSlider/ContentSlider";
+import TechnologyImg from "./technology/TechnologyImg";
+import TechnologyInfo from "./technology/TechnologyInfo";
 
 const data = require("../../data.json");
 const technologies: Technology[] = data.technology;
@@ -9,12 +12,44 @@ const technologies: Technology[] = data.technology;
 const TechnologyPage = () => {
   const { page, currentIndex, direction, paginate } = useSlider(technologies);
 
+  const { name, description } = technologies[currentIndex];
+
   return (
     <div className={clsx("fulfillParent", "flex", classes.technologyPage)}>
       <h2 className={"numberedTitle"}>
         <span>03</span>Space Launch 101
       </h2>
-      <section></section>
+      <section className={clsx("flex", classes.contentSection)}>
+        {technologies
+          .filter((_, index) => index === currentIndex)
+          .map(() => {
+            return (
+              <ContentSlider
+                sliderMovement={{ page, direction, paginate }}
+                key={page}
+              >
+                <TechnologyImg technologyName={name} />
+              </ContentSlider>
+            );
+          })}
+        <ul className={clsx(classes.indicatorsList, "ffSerif")}>
+          <li className={clsx(currentIndex === 0 && classes.active)}>1</li>
+          <li className={clsx(currentIndex === 1 && classes.active)}>2</li>
+          <li className={clsx(currentIndex === 2 && classes.active)}>3</li>
+        </ul>
+      </section>
+      {technologies
+        .filter((_, index) => index === currentIndex)
+        .map(() => {
+          return (
+            <ContentSlider
+              sliderMovement={{ page, direction, paginate }}
+              key={page}
+            >
+              <TechnologyInfo name={name} description={description} />
+            </ContentSlider>
+          );
+        })}
     </div>
   );
 };
