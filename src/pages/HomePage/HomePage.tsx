@@ -2,6 +2,7 @@ import "../../index.css";
 import classes from "./HomePage.module.css";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
+import MotionContainer from "../../ui/motionContainer/MotionContainer";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const HomePage = () => {
   };
 
   return (
-    <div
+    <MotionContainer
       className={clsx("gridContainer", "gridContainerHome", "fulfillParent")}
     >
       <div className={"flow"}>
@@ -57,7 +58,7 @@ const HomePage = () => {
           Explore
         </button>
       </div>
-    </div>
+    </MotionContainer>
   );
 };
 

@@ -6,6 +6,7 @@ import Planet from "./Planet";
 import { CaretLeft, CaretRight } from "phosphor-react";
 import useSlider from "../../ui/contentSlider/useSlider";
 import ContentSlider from "../../ui/contentSlider/ContentSlider";
+import MotionContainer from "../../ui/motionContainer/MotionContainer";
 
 const data = require("../../data.json");
 const destinations: Destination[] = data.destinations;
@@ -18,7 +19,7 @@ const DestinationPage = () => {
   const rightButtonClickHandler = () => paginate(1);
 
   return (
-    <div
+    <MotionContainer
       className={clsx(
         "fulfillParent",
         "flex",
@@ -95,7 +96,7 @@ const DestinationPage = () => {
             </ContentSlider>
           );
         })}
-    </div>
+    </MotionContainer>
   );
 };
 

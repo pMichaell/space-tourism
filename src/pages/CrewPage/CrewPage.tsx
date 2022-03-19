@@ -9,6 +9,7 @@ import useWindowDimensions from "../../hooks/useWindowDimensions";
 import MemberInfo from "./crewMember/MemberInfo";
 import useSlider from "../../ui/contentSlider/useSlider";
 import ContentSlider from "../../ui/contentSlider/ContentSlider";
+import MotionContainer from "../../ui/motionContainer/MotionContainer";
 
 const data = require("../../data.json");
 const crew: CrewMember[] = data.crew;
@@ -25,7 +26,7 @@ const CrewPage = () => {
   const rightButtonClickHandler = () => paginate(1);
 
   return (
-    <div className={clsx("fulfillParent", classes.crewPage)}>
+    <MotionContainer className={clsx("fulfillParent", classes.crewPage)}>
       <section className={clsx(classes.upperSection, "flex")}>
         <h2 className={"numberedTitle"}>
           <span>02</span>Meet Your Crew
@@ -75,7 +76,7 @@ const CrewPage = () => {
             </ContentSlider>
           );
         })}
-    </div>
+    </MotionContainer>
   );
 };
 

@@ -5,6 +5,7 @@ import { Technology } from "../../interfaces";
 import ContentSlider from "../../ui/contentSlider/ContentSlider";
 import TechnologyImg from "./technology/TechnologyImg";
 import TechnologyInfo from "./technology/TechnologyInfo";
+import MotionContainer from "../../ui/motionContainer/MotionContainer";
 
 const data = require("../../data.json");
 const technologies: Technology[] = data.technology;
@@ -15,7 +16,9 @@ const TechnologyPage = () => {
   const { name, description } = technologies[currentIndex];
 
   return (
-    <div className={clsx("fulfillParent", "flex", classes.technologyPage)}>
+    <MotionContainer
+      className={clsx("fulfillParent", "flex", classes.technologyPage)}
+    >
       <h2 className={clsx("numberedTitle", classes.heading)}>
         <span>03</span>Space Launch 101
       </h2>
@@ -54,7 +57,7 @@ const TechnologyPage = () => {
             );
           })}
       </section>
-    </div>
+    </MotionContainer>
   );
 };
 
