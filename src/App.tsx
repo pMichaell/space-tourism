@@ -1,14 +1,20 @@
-import React from "react";
+import React, { Fragment, lazy, Suspense } from "react";
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
-import HomePage from "./pages/HomePage/HomePage";
-import DestinationPage from "./pages/DestinationPage/DestinationPage";
-import CrewPage from "./pages/CrewPage/CrewPage";
-import TechnologyPage from "./pages/TechnologyPage/TechnologyPage";
+
 import Layout from "./ui/Layout/Layout";
-import DesignPage from "./pages/DesignPage/DesignPage";
 import MenuContextProvider from "./context/menuContext/MenuContextProvider";
 import { AnimatePresence } from "framer-motion";
+
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const DestinationPage = lazy(
+  () => import("./pages/DestinationPage/DestinationPage")
+);
+const CrewPage = lazy(() => import("./pages/CrewPage/CrewPage"));
+const TechnologyPage = lazy(
+  () => import("./pages/TechnologyPage/TechnologyPage")
+);
+const DesignPage = lazy(() => import("./pages/DesignPage/DesignPage"));
 
 function App() {
   const location = useLocation();
@@ -17,13 +23,15 @@ function App() {
     <MenuContextProvider>
       <Layout>
         <AnimatePresence exitBeforeEnter>
-          <Routes location={location} key={location.key}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="destination" element={<DestinationPage />} />
-            <Route path="crew" element={<CrewPage />} />
-            <Route path="technology" element={<TechnologyPage />} />
-            <Route path="design" element={<DesignPage />} />
-          </Routes>
+          <Suspense fallback={<Fragment />}>
+            <Routes location={location} key={location.key}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="destination" element={<DestinationPage />} />
+              <Route path="crew" element={<CrewPage />} />
+              <Route path="technology" element={<TechnologyPage />} />
+              <Route path="design" element={<DesignPage />} />
+            </Routes>
+          </Suspense>
         </AnimatePresence>
       </Layout>
     </MenuContextProvider>

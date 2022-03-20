@@ -15,6 +15,10 @@ const TechnologyPage = () => {
 
   const { name, description } = technologies[currentIndex];
 
+  const listClickHandler = () => {
+    paginate(1);
+  };
+
   return (
     <MotionContainer
       className={clsx("fulfillParent", "flex", classes.technologyPage)}
@@ -39,9 +43,24 @@ const TechnologyPage = () => {
             );
           })}
         <ul className={clsx(classes.indicatorsList, "ffSerif")}>
-          <li className={clsx(currentIndex === 0 && classes.active)}>1</li>
-          <li className={clsx(currentIndex === 1 && classes.active)}>2</li>
-          <li className={clsx(currentIndex === 2 && classes.active)}>3</li>
+          <li
+            className={clsx(currentIndex === 0 && classes.active)}
+            onClick={listClickHandler}
+          >
+            1
+          </li>
+          <li
+            className={clsx(currentIndex === 1 && classes.active)}
+            onClick={listClickHandler}
+          >
+            2
+          </li>
+          <li
+            className={clsx(currentIndex === 2 && classes.active)}
+            onClick={listClickHandler}
+          >
+            3
+          </li>
         </ul>
         {technologies
           .filter((_, index) => index === currentIndex)

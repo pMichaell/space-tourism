@@ -23,7 +23,7 @@ const Heading = ({ children, size = 1, className }: headingProps) => {
         assignedClassName = clsx(assignedClassName, "fs700");
         break;
       case 4:
-        assignedClassName = clsx(assignedClassName, "fs600");
+        assignedClassName = clsx(assignedClassName, "fs500");
         break;
       case 5:
         assignedClassName = clsx(assignedClassName, "fs500", "letterSpacing1");
