@@ -23,9 +23,11 @@ Custom properties
   --ff-serif: "Bellefair", serif;
   --ff-sans-cond: "Barlow Condensed", sans-serif;
   --ff-sans-normal: "Barlow", sans-serif;
+
+  --container-gap: 0;
 }
 
-/*//em, because safari treats them as other browsers in that way*/
+/*em, because safari treats them as other browsers in that way*/
 @media (min-width: 35em) {
   :root {
     --fs-800: 5rem;
