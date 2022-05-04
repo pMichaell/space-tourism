@@ -1,12 +1,13 @@
 {
-  "short_name": "Space Tourism",
-  "name": "Space Tourism",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "logo.svg",
-      "type": "image/svg",
-      "sizes": "48x48"
+      "type": "image/png",
+      "sizes": "192x192"
     }
+
   ],
   "start_url": ".",
   "display": "standalone",

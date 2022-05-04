@@ -7,16 +7,30 @@ import { CaretLeft, CaretRight } from "phosphor-react";
 import useSlider from "../../ui/contentSlider/useSlider";
 import ContentSlider from "../../ui/contentSlider/ContentSlider";
 import MotionContainer from "../../ui/motionContainer/MotionContainer";
+import {useEffect, useState} from "react";
+import moon from "../../assets/destination/image-moon.png"
+import mars from "../../assets/destination/image-mars.png"
+import europa from "../../assets/destination/image-europa.png"
+import titan from "../../assets/destination/image-titan.png"
 
 const data = require("../../data.json");
 const destinations: Destination[] = data.destinations;
+const images = [moon, mars, europa, titan]
 
 const DestinationPage = () => {
+  const [img, setImg] = useState<HTMLImageElement>()
+
   const { page, direction, currentIndex, paginate } = useSlider(destinations);
 
   const leftButtonClickHandler = () => paginate(-1);
 
   const rightButtonClickHandler = () => paginate(1);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = images[currentIndex]
+    setImg(img);
+  }, [currentIndex])
 
   return (
     <MotionContainer
@@ -92,7 +106,7 @@ const DestinationPage = () => {
               className={clsx("flex", classes.planetSection)}
               key={page}
             >
-              <Planet {...destinations[currentIndex]} />
+              <Planet  destination={destinations[currentIndex]} img={img?.src}/>
             </ContentSlider>
           );
         })}

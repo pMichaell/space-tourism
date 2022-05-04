@@ -187,7 +187,7 @@ code {
  max-width: 50ch;
 }
 
-@media (min-width: 45em) {
+@media (min-width: 1024px) {
   .gridContainer {
     column-gap: var(--container-gap, 2rem);
     /*//use this to keep columns in the middle, no matter which size is the screen*/
@@ -354,7 +354,7 @@ code {
    stacking context, which sudo element won't be able to escape*/
   z-index: 1;
   place-items: center;
-  padding: 2em 2em;
+  padding: 1em 1em;
   /*to create a square*/
   aspect-ratio: 1;
   border-radius: 50%;
@@ -377,6 +377,12 @@ code {
 .largeButton:focus::after {
   transform: scale(1.5);
   opacity: 1;
+}
+
+@media (min-height: 400px) {
+  .largeButton {
+    padding: 2em 2em;
+  }
 }
 
 .numberedTitle {

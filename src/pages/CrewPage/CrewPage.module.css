@@ -29,7 +29,6 @@
     padding: 0.4rem;
     border-radius: 50%;
     background: hsl(var(--clr-white) / .25);
-    display: block;
 }
 
 .dotIndicators button {
@@ -50,15 +49,16 @@
     margin-bottom: max(5vh, 3rem);
 }
 
-.img {
-    max-height: 300px;
-}
-
 .imgDiv {
     width: 100%;
     display: grid;
     place-items: center;
     border-bottom: 1px solid hsl(var(--clr-white) / 0.25);
+    min-height: 300px;
+}
+
+.imgDiv > img {
+    max-height: 300px;
 }
 
 .memberInfoDiv {
@@ -96,7 +96,7 @@
         border-bottom: none;
     }
 
-    .img {
+    .imgDiv > img {
         min-height: 650px;
     }
 
@@ -148,7 +148,4 @@
         width: 75%;
     }
 
-    .img {
-
-    }
 }

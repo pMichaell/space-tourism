@@ -4,15 +4,21 @@ import { Fragment } from "react";
 import { motion } from "framer-motion";
 import classes from "./CrewPage.module.css";
 import { CaretLeft, CaretRight } from "phosphor-react";
-import MemberImg from "./crewMember/MemberImg";
+import ImgContainer from "./crewMember/ImgContainer";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import MemberInfo from "./crewMember/MemberInfo";
 import useSlider from "../../ui/contentSlider/useSlider";
 import ContentSlider from "../../ui/contentSlider/ContentSlider";
 import MotionContainer from "../../ui/motionContainer/MotionContainer";
+import douglas from "../../assets/crew/image-douglas-hurley.png";
+import mark from "../../assets/crew/image-mark-shuttleworth.png";
+import victor from "../../assets/crew/image-victor-glover.png";
+import anousheh from "../../assets/crew/image-anousheh-ansari.png";
 
 const data = require("../../data.json");
 const crew: CrewMember[] = data.crew;
+const crewImages = [douglas, mark, victor, anousheh];
+
 
 const CrewPage = () => {
   const { page, direction, currentIndex, paginate } = useSlider(crew);
@@ -34,7 +40,7 @@ const CrewPage = () => {
         <ul className={clsx("flex", classes.dotIndicators)}>
           <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <CaretLeft
-              onClick={rightButtonClickHandler}
+              onClick={leftButtonClickHandler}
               color="white"
               size="1.5em"
             />
@@ -45,7 +51,7 @@ const CrewPage = () => {
           <li className={clsx(currentIndex === 3 && classes.active)} />
           <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <CaretRight
-              onClick={leftButtonClickHandler}
+              onClick={rightButtonClickHandler}
               color="white"
               size="1.5em"
             />
@@ -63,14 +69,14 @@ const CrewPage = () => {
             >
               {width < 560 && (
                 <Fragment>
-                  <MemberImg memberName={name} />
+                  <ImgContainer currentIndex={currentIndex} images={crewImages} className={classes.imgDiv}/>
                   <MemberInfo name={name} role={role} bio={bio} />
                 </Fragment>
               )}
               {width >= 560 && (
                 <Fragment>
                   <MemberInfo name={name} role={role} bio={bio} />
-                  <MemberImg memberName={name} />
+                  <ImgContainer currentIndex={currentIndex} images={crewImages} className={classes.imgDiv}/>
                 </Fragment>
               )}
             </ContentSlider>
