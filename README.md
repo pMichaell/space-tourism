@@ -4,6 +4,6 @@
 
 ## Techstack:
 
-# React
-# Css modules
-# Framer Motion
+### React
+### Css modules
+### Framer Motion
