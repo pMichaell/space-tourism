@@ -4,6 +4,12 @@
 
 ## Techstack:
 
+### TypeScript
+
 ### React
+
+### React Router
+
 ### Css modules
+
 ### Framer Motion
