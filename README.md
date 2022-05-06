@@ -2,7 +2,7 @@
 
 ## Project is based on frontendmentor.io figma project
 
-## Techstack
+## Techstack:
 
 # React
 # Css modules
